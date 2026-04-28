@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package conf;
+
+import "google/protobuf/struct.proto";
+
+option go_package = "github.com/lyon-serven/go-task/examples/demo/conf;conf";
+
+message Bootstrap {
+  App app = 1;
+  Log log = 2;
+  repeated Task tasks = 3;
+}
+
+message App {
+  string name = 1;
+  string version = 2;
+  string environment = 3;
+}
+
+message Log {
+  string level = 1;
+  string file_path = 2;
+  string rotation_time = 3;
+}
+
+message Task {
+  string id = 1;
+  string job = 2;
+  string cron = 3;
+  bool immediate = 4;
+  google.protobuf.Struct args = 5;
+}

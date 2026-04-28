@@ -1,0 +1,17 @@
+app:
+  name: "go-task-basic"
+  version: "1.0.0"
+  environment: "development"
+
+log:
+  level: "INFO"
+  file_path: ""
+
+tasks:
+  - id: "demo-startup"
+    job: "demo"
+    cron: "*/1 * * * *"
+    immediate: true
+    args:
+      greeting: "hello"
+      target: "go-task"

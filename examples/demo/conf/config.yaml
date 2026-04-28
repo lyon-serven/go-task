@@ -1,0 +1,39 @@
+app:
+  name: "go-task-demo"
+  version: "1.0.0"
+  environment: "development"
+
+log:
+  level: "INFO"
+  file_path: ""
+  file_name: "task.log"
+  file_pattern: "/%Y_%m/%d/task_%H.log"
+  rotation_time: 24h
+  file_age: 4320h
+  environment: "development"
+  system_name: "go-task-demo"
+
+tasks:
+  - id: "hello-startup"
+    job: "hello"
+    cron: "*/1 * * * *"
+    immediate: true
+    args:
+      greeting: "hello"
+      target: "demo"
+
+  - id: "sales-daily"
+    job: "report"
+    cron: "*/1 * * * *"
+    immediate: true
+    args:
+      name: "sales"
+      window: "daily"
+
+  - id: "sales-hourly"
+    job: "report"
+    cron: "*/1 * * * *"
+    immediate: true
+    args:
+      name: "sales"
+      window: "hourly"
