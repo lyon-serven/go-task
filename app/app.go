@@ -25,16 +25,12 @@ func Init(configPath string) {
 	Logger = runtime.Logger
 }
 
-func NewLogger(name string) (*libl.Logger, error) {
-	return bootstrap.NewNamedLogger(&Config.Log, name)
+func NewJobLogger(name string) (*libl.Logger, error) {
+	return bootstrap.NewNamedLogger(&Config.Log, jobLogPath(name))
 }
 
 func NewBaseJob(name string) *task.BaseJob {
-	logger, err := NewLogger(jobLogPath(name))
-	if err != nil {
-		panic("go-task: failed to init job logger: " + err.Error())
-	}
-	return task.NewBaseJob(name, logger)
+	return task.NewBaseJob(name, NewJobLogger)
 }
 
 func jobLogPath(name string) string {

@@ -37,7 +37,9 @@ func main() {
 
 	registry := task.NewRegistry()
 	registry.MustRegister("demo", func() task.Job {
-		return &demoJob{BaseJob: task.NewBaseJob("demo", logger)}
+		return &demoJob{BaseJob: task.NewBaseJob("demo", func(string) (*task.Logger, error) {
+			return logger, nil
+		})}
 	})
 
 	runner := task.New(logger, registry)

@@ -3,8 +3,8 @@ package report
 import (
 	"fmt"
 
-	"github.com/lyon-serven/go-task/app"
 	task "github.com/lyon-serven/go-task"
+	"github.com/lyon-serven/go-task/app"
 )
 
 type Job struct {

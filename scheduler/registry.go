@@ -101,5 +101,8 @@ func (r *Registry) Build(key string) (Job, error) {
 	if job == nil {
 		return nil, fmt.Errorf("scheduler: factory for %q returned nil", key)
 	}
+	if setupper, ok := job.(setupper); ok {
+		setupper.Setup()
+	}
 	return job, nil
 }

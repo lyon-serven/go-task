@@ -4,8 +4,8 @@ import (
 	"errors"
 	"time"
 
-	libl "github.com/lyon-serven/go-library/log"
 	"github.com/go-co-op/gocron"
+	libl "github.com/lyon-serven/go-library/log"
 	"go.uber.org/zap"
 )
 
@@ -38,6 +38,14 @@ func New(logger *libl.Logger, registry *Registry) *Scheduler {
 func (s *Scheduler) Load(specs []TaskSpec) error {
 	jobs := make([]scheduledJob, 0, len(specs))
 	for _, spec := range specs {
+		if spec.Enable != nil && !*spec.Enable {
+			if spec.ID == "" {
+				spec.ID = spec.Job
+			}
+			s.logger.Info("job disabled", zap.String("task", spec.ID), zap.String("job", spec.Job))
+			continue
+		}
+
 		if spec.Job == "" {
 			return errors.New("scheduler: task job is required")
 		}

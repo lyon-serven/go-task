@@ -3,8 +3,8 @@ package conf
 import structpb "google.golang.org/protobuf/types/known/structpb"
 
 type Bootstrap struct {
-	App   *App   `json:"app,omitempty"`
-	Log   *Log   `json:"log,omitempty"`
+	App   *App    `json:"app,omitempty"`
+	Log   *Log    `json:"log,omitempty"`
 	Tasks []*Task `json:"tasks,omitempty"`
 }
 
@@ -89,6 +89,7 @@ type Task struct {
 	Cron      string           `json:"cron,omitempty"`
 	Immediate bool             `json:"immediate,omitempty"`
 	Args      *structpb.Struct `json:"args,omitempty"`
+	Enable    bool             `json:"enable,omitempty"`
 }
 
 func (x *Task) GetId() string {
@@ -124,4 +125,11 @@ func (x *Task) GetArgs() *structpb.Struct {
 		return x.Args
 	}
 	return nil
+}
+
+func (x *Task) GetEnable() bool {
+	if x != nil {
+		return x.Enable
+	}
+	return false
 }

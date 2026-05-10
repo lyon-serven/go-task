@@ -12,6 +12,7 @@ tasks:
     job: "demo"
     cron: "*/1 * * * *"
     immediate: true
+    enable: true
     args:
       greeting: "hello"
       target: "go-task"

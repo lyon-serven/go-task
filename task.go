@@ -7,6 +7,7 @@ import (
 
 type Logger = libl.Logger
 type Job = scheduler.Job
+type LoggerFactory = scheduler.LoggerFactory
 type Factory = scheduler.Factory
 type Registry = scheduler.Registry
 type Scheduler = scheduler.Scheduler
@@ -21,6 +22,6 @@ func New(logger *Logger, registry *Registry) *Scheduler {
 	return scheduler.New(logger, registry)
 }
 
-func NewBaseJob(name string, logger *Logger) *BaseJob {
-	return scheduler.NewBaseJob(name, logger)
+func NewBaseJob(name string, factory LoggerFactory) *BaseJob {
+	return scheduler.NewBaseJob(name, factory)
 }

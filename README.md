@@ -45,6 +45,19 @@ Shows a fuller app-style layout:
 - blank-import driven registration in the entrypoint
 - multiple task instances reusing the same job key with different args
 
+## Task configuration
+
+Each task supports `enable`. Omit it or set `enable: true` to load and schedule the task; set `enable: false` to skip it.
+
+```yaml
+tasks:
+  - id: "demo-startup"
+    job: "demo"
+    cron: "*/1 * * * *"
+    immediate: true
+    enable: true
+```
+
 ## Log configuration
 The public `conf.Log` model supports both a minimal setup and extended file layout settings.
 
