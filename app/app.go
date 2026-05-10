@@ -6,10 +6,7 @@ import (
 	libl "github.com/lyon-serven/go-library/log"
 	task "github.com/lyon-serven/go-task"
 	"github.com/lyon-serven/go-task/conf"
-	"github.com/lyon-serven/go-task/internal/bootstrap"
 )
-
-const defaultConfigPath = bootstrap.DefaultConfigPath
 
 var (
 	Config *conf.Config
@@ -17,16 +14,16 @@ var (
 )
 
 func Init(configPath string) {
-	runtime, err := bootstrap.Load(configPath)
+	runtime, err := Load(configPath)
 	if err != nil {
-		panic("go-task: failed to bootstrap runtime: " + err.Error())
+		panic("go-task: failed to init app: " + err.Error())
 	}
 	Config = runtime.Config
 	Logger = runtime.Logger
 }
 
 func NewJobLogger(name string) (*libl.Logger, error) {
-	return bootstrap.NewNamedLogger(&Config.Log, jobLogPath(name))
+	return NewLogger(&Config.Log, jobLogPath(name))
 }
 
 func NewBaseJob(name string) *task.BaseJob {

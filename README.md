@@ -10,7 +10,7 @@ A lightweight scheduled task library for Go, with two example levels for learnin
 - `scheduler/` — core scheduling primitives, including global job constructor registration
 - `examples/basic/` — minimal demo focused on the public API only
 - `examples/demo/` — richer demo with proto-based config and per-job packages
-- `internal/bootstrap/` — runtime wiring and logger/bootstrap helpers
+- `app/` — runtime wiring, config loading, and logger helpers
 
 ## Which example should I read?
 

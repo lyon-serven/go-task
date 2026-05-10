@@ -8,8 +8,8 @@ import (
 	"time"
 
 	task "github.com/lyon-serven/go-task"
+	"github.com/lyon-serven/go-task/app"
 	"github.com/lyon-serven/go-task/conf"
-	"github.com/lyon-serven/go-task/internal/bootstrap"
 	"gopkg.in/yaml.v3"
 )
 
@@ -30,7 +30,7 @@ func main() {
 		panic(err)
 	}
 
-	logger, err := bootstrap.NewLogger(&cfg.Log, "")
+	logger, err := app.NewLogger(&cfg.Log, "")
 	if err != nil {
 		panic(err)
 	}

@@ -1,4 +1,4 @@
-package bootstrap
+package app
 
 import (
 	"time"
@@ -32,10 +32,6 @@ func Load(configPath string) (*Runtime, error) {
 
 	logger.Info("go-task initialized")
 	return &Runtime{Config: cfg, Logger: logger}, nil
-}
-
-func NewNamedLogger(cfg *conf.Log, name string) (*libl.Logger, error) {
-	return NewLogger(cfg, name)
 }
 
 func NewLogger(cfg *conf.Log, name string) (*libl.Logger, error) {
